@@ -1,1 +1,1 @@
-web: gunicorn marathi.wsgi
+web: gunicorn marathi.wsgi --log-file -
