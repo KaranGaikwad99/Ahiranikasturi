@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+	<title>Gallery Details - Ahirani Kasturi Website</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+</head>
+<body>
+	{% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="gallery-details">
+			<div>
+				<h2>Gallery</h2>
+			</div>
+			<div>
+				{% if instance.image %}
+				<img src='{{ instance.image.url }}' width="460" height="500" class='img-responsive' />
+				{% endif %}
+				<div>
+					<h2>{{ instance.title }}</h2>
+					<p>
+						{{ instance.content }}
+					</p>
+					
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+	{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+		<title>Registration - Ahirani Kasturi Website</title>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+			$( function() {
+			  $( "#datepicker" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange : '-100:+0'
+			  });
+			} );
+			
+		</script>
+	</head>
+<body>
+	{% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="contact">
+			<div>
+				<h2>Contact</h2>
+				<div>
+					<h4>Contact Us</h4>
+					<p>
+						For further inquiries, help or suggestions. You may contact us through the following:
+					</p>
+					<ul>
+						<li class="phone-num">
+							(+91)-99823113177 <br> (+91)-9607045008
+						</li>
+						<li class="email">
+							<a href="#">vmvk24pune@gmail.com</a> <br> <a href="#">ahiranikasturi.com</a>
+						</li>
+						<li class="address">
+							Rustan Colony <br> Chinchwad Gaon, Shop no.22
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<h2>Send Us A Message</h2>
+				<p>
+					Attach Passport Size Photograph along with this form. Please  read  the Instruction before filling  the  form. 
+				</p>
+
+				<form method="POST" novalidate="novalidate" id="registration" action="">{% csrf_token %}					
+					<label for="first_name">First Name
+						{{ form.first_name }}
+						<span class="error text-danger">{{ form.first_name.errors.as_text }}</span>
+						
+					</label>
+					
+					<label for="last_name">Last Name
+						{{ form.last_name }}
+						<span class="error text-danger">{{ form.last_name.errors.as_text }}</span>
+					</label>
+
+					<label for="date_of_birth">Date Of Birth
+						<input type="text" id="datepicker">
+						<span class="error text-danger">{{ form.date_of_birth.errors.as_text }}</span>
+					</label>
+
+					<label for="address">Address
+						{{ form.address }}
+						<span class="error text-danger">{{ form.address.errors.as_text }}</span>
+					</label>
+
+					<label for="contact_number">Contact no.
+						{{ form.contact_number }}
+						<span class="error text-danger">{{ form.contact_number.errors.as_text }}</span>
+					</label>
+
+					<label for="hieght">Height
+						{{ form.hieght }}
+						<span class="error text-danger">{{ form.hieght.errors.as_text }}</span>
+					</label>
+
+					<label for="email">Email id
+						{{ form.email }}
+						<span class="error text-danger">{{ form.email.errors.as_text }}</span>
+					</label>
+					
+					<label for="education">Education
+						{{ form.education }}
+						<span class="error text-danger">{{ form.education.errors.as_text }}</span>
+					</label>
+
+					<label for="employment">Employment
+						{{ form.employment }}
+						<span class="error text-danger">{{ form.employment.errors.as_text }}</span>
+					</label>
+
+					<label for="about_you" class="message">About You</label>
+					<textarea name="message" id="message" cols="30" rows="10" value='{{ form.about_you }}'></textarea>
+					<span id="message" class="error text-danger">{{ form.about_you.errors.as_text }}</span>
+					<input type="reset" value="reset" ><input type="submit" value="" >
+				</form>
+
+			</div>
+		</div>
+	</div>
+{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

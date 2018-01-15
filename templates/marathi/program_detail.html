@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+    <head>
+			<meta charset="UTF-8">
+			<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+            <title>Program Details - Ahirani Kasturi Website</title>
+            <link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+    </head>
+<body>
+    {% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="blog-single">
+			<div>
+				<span>{{ prog_instance.timestamp|date:"M d" }}</span>
+				<div>
+					<h4>{{ prog_instance.title }}</h4>
+					<span>Posted by admin</span>
+				</div>
+				{% if prog_instance.image %}
+				<img src='{{ prog_instance.image.url }}' width="700" height="384" class='img-responsive' /><br><br>
+				{% endif %}
+				<p>
+                    {{ prog_instance.content }}
+                </p><br>
+                <div class="section">
+					<span>1 Comment</span> <a href="#"><img src=" {% static 'images/comment-avatar.jpg' %}" alt=""></a>
+					<div>
+						<span><a href="#">Skies & Rockets</a> June 22, 2023 at 3:40 pm</span>
+						<p>
+							Mauris tellus libero, ullamcorper nec blandit eu, luctus eu augue. Duis ipsum felis, rutrum vel condimentum consectetur, mattis vitae risus.
+						</p>
+						<!-- <a href="#">Reply</a> -->
+					</div>
+				</div>
+				
+				<form method="" action="">
+					<div>
+						<span>Reply Form</span>
+						<label for="name">Name
+							<input type="text" id="name">
+						</label>
+						<label for="email">Email Address
+							<input type="text" id="email">
+						</label>
+						<label for="website">Website
+							<input type="text" id="website">
+						</label>
+					</div>
+					<div>
+						<label for="comment">Comment</label>
+						<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+						<input type="submit" value="">
+					</div>
+				</form>
+			</div>
+			<div class="sidebar">
+				<div>
+						<a href=""><h4>online application form</h4><img src=" {% static 'images/new-bt-new.gif' %}" alt="new_logo"></a><br><br>
+					<h4>Recent Program Posts</h4><br>
+					<ul>
+                        {% for obj in prog_d_ins %}
+						<li>
+                            <a href="{% url 'program_detail' id=obj.id %}">{{ obj.title }}</a>
+                        </li><br>
+                        {% endfor %}
+					</ul>
+				</div>
+				<div>
+					<h4>Recent Blog Posts</h4><br>
+					<ul>
+                        {% for obj in pos_instanse %}
+						<li>
+                            <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a>
+                        </li><br>
+                        {% endfor %}
+					</ul>
+				</div>
+				
+				<div class="section">
+					<h4>From The Gallery</h4><br>
+					<ul>
+						<li>
+							{% if gal_instanse %}
+							{% for imag in gal_instanse %}
+								<a href="{% url 'gallery_detail' id=imag.id %}"><img src='{{ imag.image.url }}' style="width:170px" class='img-responsive'></a>
+							{% endfor %}
+							{% endif %}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </div>
+{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

@@ -1,0 +1,71 @@
+{% load static %}
+<!-- Static Footer -->
+<div class="footer">
+		<div>
+			<div>
+				<h4>24 hour customer service</h4>
+				<ul>
+					<li class="phone-num">
+						(+91)-99823113177 <br> (+91)-9607045008
+					</li>
+					<li class="email">
+						<a href="#">vmvk24pune@gmail.com</a>
+					</li>
+					<li class="address">
+						Rustan Colony <br> Chinchwad Gaon, Shop no.22
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h4>Recent Tweets</h4>
+				<ul>
+					<li>
+						<p>
+							Hi, This seems interesting... You are doing great job keep it up Thanks.
+						</p>
+						- <span><a href="#">1 day ago</a></span>
+					</li>
+					<li>
+						<p>
+							The main idea behind Maharashtra Saundarya Samradni, is to promote the Culture of Maharashtra and display the various flavours of Maharashtra and its various regions.
+						</p>
+						- <span><a href="#">2 days ago</a></span>
+					</li>
+				</ul>
+			</div>
+			<div class="connect">
+				<h4>Get in touch with us</h4>
+				<a href="http://ahiranikasturi.com/go/facebook/" id="facebook">Facebook</a> <a href="http://ahiranikasturi.com/go/twitter/" id="twitter">Twitter</a> <a href="http://ahiranikasturi.com/go/googleplus/" id="googleplus">Google+</a>
+				<form action="about.html">
+					<h4>Newsletter Signup</h4>
+					<input type="text" value="Enter email address" onblur="this.value=!this.value?'Enter email address':this.value;" onfocus="this.select()" onclick="this.value='';">
+					<input type="#" id="submit" value="">
+				</form>
+			</div>
+		</div>
+		<div>
+			<ul>
+				<li>
+					<a href="{% url 'home' %}">Home</a>
+				</li>
+				<li>
+					<a href="{% url 'about_us' %}">About</a>
+				</li>
+				<li>
+					<a href="{% url 'program' %}">Our Programs</a>
+				</li>
+				<li>
+					<a href="{% url 'gallery_home' %}">Gallery</a>
+				</li>
+				<li>
+					<a href="{% url 'contact' %}">Contact</a>
+				</li>
+				<li>
+					<a href="{% url 'post_home' %}">Blog</a>
+				</li>
+			</ul>
+			<p>
+				&#169; 2017 AHIRANI KASTURI. All Rights Reserved
+			</p>
+		</div>
+	</div>

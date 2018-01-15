@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+    <head>
+			<meta charset="UTF-8">
+			<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+            <title>Blog - Ahirani Kasturi Website</title>
+            <link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+    </head>
+<body>
+    {% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="blog-single">
+			<div>
+				<span>{{ instance.timestamp|date:"M d" }}</span>
+				<div>
+					<h4>{{ instance.title }}</h4>
+					<span>Posted by admin</span>
+				</div>
+				{% if instance.image %}
+				<img src='{{ instance.image.url }}' width="700" height="300" class='img-responsive' /><br><br>
+				{% endif %}
+				<p>
+                    {{ instance.content }}
+                </p><br>
+                <div class="section">
+					<span>1 Comment</span> <a href="#"><img src=" {% static 'images/comment-avatar.jpg' %}" alt=""></a>
+					<div>
+						<span><a href="#">Skies & Rockets</a> June 22, 2023 at 3:40 pm</span>
+						<p>
+							Mauris tellus libero, ullamcorper nec blandit eu, luctus eu augue. Duis ipsum felis, rutrum vel condimentum consectetur, mattis vitae risus.
+						</p>
+						<!-- <a href="#">Reply</a> -->
+					</div>
+				</div>
+				
+				<form method="" action="">
+					<div>
+						<span>Reply Form</span>
+						<label for="name">Name
+							<input type="text" id="name">
+						</label>
+						<label for="email">Email Address
+							<input type="text" id="email">
+						</label>
+						<label for="website">Website
+							<input type="text" id="website">
+						</label>
+					</div>
+					<div>
+						<label for="comment">Comment</label>
+						<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+						<input type="submit" value="">
+					</div>
+				</form>
+			</div>
+			<div class="sidebar">
+				<div>
+					<span><a href=""><h4>online application form</h4><img src=" {% static 'images/new-bt-new.gif' %}" alt="new_logo"></a></span><br>
+					<br><br><h4>Recent Blog Posts</h4><br>
+					<ul>
+                        {% for obj in object_dtit %}
+						<li>
+                            <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a>
+                        </li><br>
+                        {% endfor %}
+					</ul>
+				</div>
+				
+				<div class="section">
+					<h4>From The Gallery</h4><br>
+					<ul>
+						<li>
+							{% if image_instanse_d %}
+							{% for imag in image_instanse_d %}
+								<a href="{% url 'gallery_detail' id=imag.id %}"><img src='{{ imag.image.url }}' style="width:170px" class='img-responsive'></a>
+							{% endfor %}
+							{% endif %}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    </div>
+{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

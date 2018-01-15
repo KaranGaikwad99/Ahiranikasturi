@@ -1,0 +1,68 @@
+{% load static %}
+{% load embed_video_tags %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+	<title>Gallery - Ahirani Kasturi Website</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+</head>
+<body>
+	{% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="gallery">
+			<div>
+				<h2>Gallery</h2>
+				<div>
+					<span>Sort By:</span>
+					<ul>
+						<li class="selected">
+							<a>View All</a> |
+						</li>
+						<li>
+							<a>Images</a> |
+						</li>
+						<li>
+							<a>Videos</a>
+						</li>
+					</ul>
+				</div>
+				<div class="gallery_paging">
+					<span>												
+						{% if object_list.has_previous %}
+							<a href="?page={{ object_list.previous_page_number }}"> < Previous </a>&nbsp;
+						{% endif %}
+										
+						<span class="current">
+							Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.&nbsp;
+						</span>
+										
+						{% if object_list.has_next %}
+							<a href="?page={{ object_list.next_page_number }}"> Next > </a>
+						{% endif %}
+					</span>
+				</div>
+			</div>
+			<ul>
+				{% for obj in object_list %}
+				<li>
+					{% if obj.image %}
+						<a href="{{ obj.get_absolute_url }}"><img src='{{ obj.image.url }}' width="220" height="181" class='img-responsive'/></a><br>
+					{% endif %}
+					<h4><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h4>
+					<p>
+						{{ obj.content|slice:":96" }}
+					</p>
+				
+					{% endfor %}	
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+	{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

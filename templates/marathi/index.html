@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- 24MP Presents "ahiranikasturi.com -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+	<title>Ahirani Kasturi Website</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+</head>
+<body>
+  {% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="home">
+			<div class="featured">
+				<div>
+					<p>
+              अहिरानी संस्कृती दर्शन  <br> आपला खांन्देश  <br> 'आपली अहिराणी'.
+					</p>
+					<h2>खांन्देश सांस्कृतिक महोत्सव. <br><br> खांन्देश साहित्य संमेलन. <br><br> <span>खांन्देश अहिराणी कस्तुरी मंच.</span></h2>
+				</div>
+			</div>
+			<div class="section">
+				<div>
+					<div>
+              <a href=""><img src=" {% static 'images/help-out.jpg' %}" alt=""></a>
+						<p>
+							This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text.
+						</p>
+					</div>
+          <div>
+              <h3><a href="{% url 'program' %}">Top Programs</a></h3>
+              
+              <ul>
+                {% for obj in prog_query %}
+                <li>
+                    
+                    {% if obj.image  %}                                    
+                    <a href="{% url 'program' %}"><img src='{{ obj.image.url}}' style="width:220px; height:150px " class='img-responsive'></a>                      
+                    {% endif %}
+                    <h4><a href="{% url 'program' %}">{{obj.title}}</a></h4>
+                    <p>
+                      {{obj.content|slice:":60"}}...
+                    </p>
+                    
+                                         
+                </li>
+                {% endfor %}             
+              </ul>
+                
+          </div>
+      
+				</div>
+				<div>
+					<div>
+              <a href=""><img src="{% static 'images/what-we-do.jpg' %}" alt=""></a>
+						<p>
+							You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
+						</p>
+					</div>
+					<div>
+              <h3><a href="{% url 'post_home' %}">Recent Blog Posts</a></h3>
+              
+              
+              <ul>
+                {% for b_obj in post_query %}
+                <li>
+                    {% if b_obj.image %}
+                    <a><img src='{{ b_obj.image.url}}' style="width:100px; height:97px " class='img-responsive'></a>
+                    {% endif %}
+                    <div>
+                      <h4><a href="{% url 'post_detail' id=b_obj.id %}">{{b_obj.title}}</a></h4>
+                      <p>
+                          {{b_obj.content|slice:":110"}}<a href="{% url 'post_detail' id=b_obj.id %}" class="more">...Read More</a>
+                      </p>
+                    </div>
+                </li>
+                {% endfor %}
+              </ul>
+              
+              
+          </div>
+          
+				</div>
+			</div>
+		</div>
+	</div>
+  {% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}

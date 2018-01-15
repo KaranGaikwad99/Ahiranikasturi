@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+	<title>Blog - Ahirani Kasturi Website</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+</head>
+<body>
+{% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="blog">
+			<div>
+				
+				<ul>
+					{% for obj in object_list %}
+                    <li>
+						
+						<span>{{obj.timestamp|date:"M d"}}</span>
+							<div>
+								<h4><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h4>
+								<span>Posted by admin</span>
+							</div>
+							{% if obj.image %}
+								<a href="{{ obj.get_absolute_url }}"><img src='{{ obj.image.url }}' width="700" height="300" class='img-responsive'/></a><br>
+							{% endif %}
+						<p>
+							{{ obj.content|slice:":367" }}...
+						</p>
+
+						
+					</li>
+					{% endfor %}
+				</ul>
+				<div class="pagination">
+					<span>												
+						{% if object_list.has_previous %}
+							<a href="?page={{ object_list.previous_page_number }}"> Previous </a>&nbsp;
+						{% endif %}
+										
+						<span class="current">
+							Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.&nbsp;
+						</span>
+										
+						{% if object_list.has_next %}
+							<a href="?page={{ object_list.next_page_number }}"> Next </a>
+						{% endif %}
+					</span>
+				</div>
+			</div>
+			
+			<div class="sidebar">
+				<div>
+					<span><a href=""><h4>online application form</h4><img src=" {% static 'images/new-bt-new.gif' %}" alt="new_logo"></a></span><br>
+					<br><h4>Recent Blog Posts</h4><br>
+					<ul>
+						{% for obj in object_tit %}
+						<li>
+							<a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a>							
+						</li><br>
+						{% endfor %}
+					</ul>
+				</div>
+				
+				<div class="section">
+					<h4>From The Gallery</h4><br>					
+					<ul>
+						<li>
+							{% if image_instanse %}
+							{% for imag in image_instanse %}
+							<!-- <a href="gallery.html"><img src="images/gallery-thumb1.jpg" alt=""></a> -->
+								<a href="{% url 'gallery_detail' id=imag.id %}"><img src='{{ imag.image.url }}' style="width:170px" class='img-responsive'></a>
+							{% endfor %}
+							{% endif %}
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+    </div>    
+{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

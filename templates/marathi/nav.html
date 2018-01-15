@@ -1,0 +1,29 @@
+{% load static %}
+<!-- Static Navbar -->
+	<div class="header">
+            <div>
+                <a href="{% url 'home' %}" id="logo"><img src="{% static 'images/name_ak_2 _2.png' %}" style="width:400px; height:85px;" alt="logo"></a>
+                <div>
+                    <a href="{% url 'program' %}"> Maharashtra Saundarya Samradni 2018</a>
+                    <ul>
+                        
+                        <li>
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about_us' %}">About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'gallery_home' %}">Gallery</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'post_home' %}">Blog</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>

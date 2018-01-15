@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Website ahiranikasturi.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/window_logo_ak.png' %}" />
+	<title>Programs - Ahirani Kasturi Website</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type = "text/css">
+</head>
+<body>
+{% include 'marathi/nav.html' %}
+	<div class="body">
+		<div class="programs">
+            <h2>Our Programs</h2>
+            <ul>
+				<li>
+                    {% for obj in queryset %}
+                    {% if obj.image %}  
+                        <a href="{% url 'program_detail' id=obj.id %}"><img src='{{ obj.image.url }}' width="218" height="181" class='img-responsive'/></a><span><a href="{% url 'program_detail' id=obj.id %}">{{ obj.title }}</a></span>
+					{% endif %}
+                    {% endfor %}
+                </li>	
+			</ul>
+			<div>
+                {% for p_imag in prog_image %}                        
+                    <h2><a href="{% url 'program_detail' id=p_imag.id %}">{{ p_imag.title }}</a></h2>
+						{% if p_imag.image %}						          
+							<a href="{% url 'program_detail' id=p_imag.id %}"><img src='{{ p_imag.image.url }}' width="458" height="273" class='img-responsive' /></a>
+						{% endif %}
+                    <p>
+                        {{ p_imag.content|slice:":216" }}...
+                    </p><br><br>
+                {% endfor %}
+				<br><br>
+
+				<div class="gallery_paging">
+					<span>												
+						{% if prog_image.has_previous %}
+							<a href="?page={{ prog_image.previous_page_number }}"> < PREVIOUS </a>
+						{% endif %}
+										
+						<span class="current">
+							Page {{ prog_image.number }} of {{ prog_image.paginator.num_pages }}
+						</span>
+										
+						{% if prog_image.has_next %}
+							<a href="?page={{ prog_image.next_page_number }}"> NEXT > </a>
+						{% endif %}
+					</span>
+				</div>
+			</div>
+			<div class="sidebar">
+				<div>
+					<span><a href=""><h4>online application form</h4><img src=" {% static 'images/new-bt-new.gif' %}" alt="new_logo"></a></span><br>
+					<h4>Recent Blog Posts</h4><br>
+					<ul>
+						<li>
+							{% for obj in instance %}
+								<a href="{% url 'post_detail' id=obj.id %}">{{ obj.title }}</a><br>
+							{% endfor %}
+						</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h4>From The Gallery</h4>
+					<ul>
+						<li>
+							{% if queryset1 %}
+							{% for imag in queryset1 %}
+								<a href="{% url 'gallery_detail' id=imag.id %}"><img src='{{ imag.image.url }}' style="width:170px" class='img-responsive'></a>
+							{% endfor %}
+							{% endif %}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% include 'marathi/footer.html' %}
+</body>
+</html>
+{{ form.media }}
