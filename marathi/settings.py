@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY','@$75msy+$hi#sh7t51-np%bx#-p+yv2g%ezk=)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ahiranikasturi.herokuapp.com','www.ahiranikasturi.com']
+ALLOWED_HOSTS = ['ahiranikasturi.herokuapp.com']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER='karan.gaikwad99@gmail.com'
