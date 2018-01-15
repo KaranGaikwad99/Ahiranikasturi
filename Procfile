@@ -1,0 +1,1 @@
+web: gunicorn marathi.wsgi
